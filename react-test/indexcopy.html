@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>React App</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    function Header() {
+      return (
+        <header>
+          <h2>App Header</h2>
+        </header>
+      )
+    }
+
+    // function App() {
+    //   return React.createElement('h1', null, 'Hello, React')
+    // }
+    function App() {
+      const name = 'Aaron'
+      const member = true;
+
+      // if (member) {
+      //   return (
+      //     <>
+      //       <h1>Hello, {name}</h1>
+      //       <p>Welcome back</p>
+      //     </>
+      //   )
+      // } else {
+      //   <>
+      //     <h1>Hello, {name}</h1>
+      //     <p>Join Us!</p>
+      //   </>
+      // }
+
+      return (
+        <>
+          <Header />
+          <h1 className="header">Hello, {name}</h1>
+          <label htmlFor="header"></label>
+          {member ? <p>Welcome back</p> : <p>Join Us!</p>}
+          {member && <p>Welcome back</p>}
+        </>
+      );
+    }
+
+    const container = document.getElementById('root');
+    const root = ReactDOM.createRoot(container);
+    root.render(React.createElement(App));
+  </script>
+</body>
+
+</html>
