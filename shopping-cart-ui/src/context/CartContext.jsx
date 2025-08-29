@@ -4,7 +4,24 @@ import { CartContext } from './Context';
 export function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
 
+  const addToCart = (product) => {
+    setCart((prev) => {
+      // check if item already exists in cart
+      const existing = prev.find((item) => item.id === product.id);
+
+      if (existing) {
+        return prev.map((item) =>
+          item.id === product.id ? { ...item, qty: item.qty + 1 } : item,
+        );
+      }
+
+      return [...prev, { ...product, qty: 1 }];
+    });
+  };
+
   return (
-    <CartContext.Provider value={{ cart }}>{children}</CartContext.Provider>
+    <CartContext.Provider value={{ cart, addToCart }}>
+      {children}
+    </CartContext.Provider>
   );
 }
